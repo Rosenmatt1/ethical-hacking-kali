@@ -4,6 +4,10 @@ import subprocess # the true allows to run Linux commands through function
 import optparse
 #allows to use users inputs as arguments
 
+parser = optparse.OptionParser()
+parser.add_option("-i", "--interface", dest="interface", help="Interface to change its MAC address")
+parser.parse_args()
+
 # raw_input() for python2
 interface = input("interface > ")
 # "wlan0"
