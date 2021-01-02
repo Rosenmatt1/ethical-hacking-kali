@@ -5,14 +5,15 @@ import optparse
 #allows to use users inputs as arguments
 
 parser = optparse.OptionParser()
+
 parser.add_option("-i", "--interface", dest="interface", help="Interface to change its MAC address")
 parser.add_option("-m", "--mac", dest="new_mac", help="New Mac address")
-parser.parse_args()
 
-# raw_input() for python2
-interface = input("interface > ")
+(options, arguments) = parser.parse_args()
+
+interface = options.interface
 # "wlan0"
-new_mac = input("new MAC > ")
+new_mac = options.new_mac
 # "00:11:22:33:44:77"
 
 print("[+] Changing MAC address for " + interface + " to " + new_mac)
