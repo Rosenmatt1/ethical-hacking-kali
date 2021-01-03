@@ -3,6 +3,7 @@
 import subprocess # the true allows to run Linux commands through function
 import optparse
 #allows to use users inputs as arguments
+#parser
 
 def get_arguments():
     parser = optparse.OptionParser()
