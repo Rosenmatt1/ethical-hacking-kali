@@ -29,4 +29,6 @@ def change_mac(interface, new_mac):
     # a list that tells the order of commands allowed by the user to prevent the user input from running other commands
 
 options = get_arguments()
-change_mac(options.interface, options.new_mac)
+# change_mac(options.interface, options.new_mac)
+ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
+print(ifconfig_result)
