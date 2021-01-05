@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import subprocess # the true allows to run Linux commands through function
-import optparse
-#allows to use users inputs as arguments
+import optparse #allows to use users inputs as arguments
+import re #regex library
 
 def get_arguments():
     parser = optparse.OptionParser()
@@ -32,3 +32,9 @@ options = get_arguments()
 # change_mac(options.interface, options.new_mac)
 ifconfig_result = subprocess.check_output(["ifconfig", options.interface])
 print(ifconfig_result)
+
+mac_address_search_result = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w", ifconfig_result)
+if mac_address_search_result:
+    print(mac_address_search_result.group(0))
+else:
+    print("[-] Could not read MAC address")
