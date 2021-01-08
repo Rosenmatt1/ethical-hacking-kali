@@ -38,9 +38,15 @@ def get_current_mac(interface):
         print("[-] Could not read MAC address")
 
 options = get_arguments()
-# change_mac(options.interface, options.new_mac)
+
 current_mac = get_current_mac(options.interface)
 print("Current Mac =" + str(current_mac))  #the str is to prevent a nonType error
 
+change_mac(options.interface, options.new_mac)
 
+current_mac = get_current_mac(options.interface)
+if current_mac == options.new_mac:
+    print("[+] MAC address as successfully hanged to" + current_mac)
+else:
+    print("[-] MAC address did not get changedgit ")
 
