@@ -2,10 +2,14 @@
 import subprocess # the true allows to run Linux commands through function
 import scapy.all as scapy
 
-def scan(ip):
-    scapy.arping(ip)
+# route -n (in terminal shows all the IP address)
+# def scan(ip):
+#     scapy.arping(ip)
+#
+# scan("10.0.2.1/24")
 
-scan("10.0.2.1/24")
+# function to get MAC address manually intead of using scappy
+def scan(ip):
 
 
 
