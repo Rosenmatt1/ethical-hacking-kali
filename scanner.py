@@ -8,9 +8,14 @@ import scapy.all as scapy
 #
 # scan("10.0.2.1/24")
 
-# function to get MAC address manually intead of using scappy
+# function to get MAC address manually instead of using scappy
 def scan(ip):
+    arp_request = scapy.ARP(pdst=ip)
+    print(arp_request.summary())
+    # scapy.ls(scapy.ARP())  list all fields we can change
 
+
+scan("10.0.2.1/24")
 
 
 # ip_address = "192.168.1.1/24"
