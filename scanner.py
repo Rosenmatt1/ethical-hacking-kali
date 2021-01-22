@@ -11,7 +11,16 @@ import scapy.all as scapy
 # function to get MAC address manually instead of using scappy
 def scan(ip):
     arp_request = scapy.ARP(pdst=ip)
-    print(arp_request.summary())
+
+    broadcast = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+
+    arp_request_broadcast = broadcast/arp_request
+    # arp_request_broadcast.show()
+    answered, unanswsered = scapy.srp(arp_request_broadcast)
+
+    # print(broadcast.summary())
+    # scapy.ls(scapy.Ether())
+    # print(arp_request.summary())
     # scapy.ls(scapy.ARP())  list all fields we can change
 
 
