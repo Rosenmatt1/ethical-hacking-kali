@@ -16,7 +16,14 @@ def scan(ip):
 
     arp_request_broadcast = broadcast/arp_request
     # arp_request_broadcast.show()
-    answered, unanswsered = scapy.srp(arp_request_broadcast)
+    # answered_list, unanswsered_list = scapy.srp(arp_request_broadcast, timeout=1)
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1)[0] #tells it to return only 1st item returned which is the answered list
+    # print(answered_list.summary())
+
+    for element in answered_list:
+        print(element[1].show())
+        print(element[1].psrc)
+        print(element[1].hwrc)
 
     # print(broadcast.summary())
     # scapy.ls(scapy.Ether())
