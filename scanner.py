@@ -19,11 +19,13 @@ def scan(ip):
     # print(answered_list.summary())
 
     print("IP\t\t\tMAC ADDRESS\n------------------------------------")   #the \t creates a tab os space and the \n goes to next line
+    client_list = []
     for element in answered_list:
+        client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
+        client_list.append(client_dict)
         # print(element[1].show())
         print(element[1].psrc + "\t\t" + element[1].hwsrc)
-
-
+    print(client_list)
     # print(broadcast.summary())
     # scapy.ls(scapy.Ether())
     # print(arp_request.summary())
