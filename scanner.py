@@ -15,24 +15,29 @@ def scan(ip):
     arp_request_broadcast = broadcast/arp_request
     # arp_request_broadcast.show()
     # answered_list, unanswsered_list = scapy.srp(arp_request_broadcast, timeout=1)
-    answered_list = scapy.srp(arp_request_broadcast, timeout=1)[0] #tells it to return only 1st item returned which is the answered list
+    answered_list = scapy.srp(arp_request_broadcast, timeout=1, verbose=False)[0] #tells it to return only 1st item returned which is the answered list
     # print(answered_list.summary())
 
-    print("IP\t\t\tMAC ADDRESS\n------------------------------------")   #the \t creates a tab os space and the \n goes to next line
     client_list = []
     for element in answered_list:
         client_dict = {"ip": element[1].psrc, "mac": element[1].hwsrc}
         client_list.append(client_dict)
         # print(element[1].show())
-        print(element[1].psrc + "\t\t" + element[1].hwsrc)
-    print(client_list)
+        # print(element[1].psrc + "\t\t" + element[1].hwsrc)
+    return client_list
     # print(broadcast.summary())
     # scapy.ls(scapy.Ether())
     # print(arp_request.summary())
     # scapy.ls(scapy.ARP())  list all fields we can change
 
 
-scan("10.0.2.1/24")
+def print_result(results_list):
+    print("IP\t\t\tMAC ADDRESS\n------------------------------------")  # the \t creates a tab os space and the \n goes to next line
+    for client in results_list:
+        print(client["ip"] + "\t\t" + client["mac"])
+
+scan_result = scan("10.0.2.1/24")
+print_result(scan_result)
 
 
 # ip_address = "192.168.1.1/24"
