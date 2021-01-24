@@ -54,5 +54,4 @@ print_result(scan_result)
 
 
 # ip_address = "192.168.1.1/24"
-#
 # subprocess.call("netdiscover " + "-r " + ip_address, shell=True)
