@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 import subprocess # the true allows to run Linux commands through function
 import scapy.all as scapy
-import optparse #allows to use users inputs as arguments
+#import optparse #allows to use users inputs as arguments
+import argparse
 
 # route -n (in terminal shows all the IP address)
 # def scan(ip):
@@ -10,11 +11,11 @@ import optparse #allows to use users inputs as arguments
 # scan("10.0.2.1/24")
 
 def get_arguments():
-    parser = optparse.OptionParser()
-    parser.add_option("-t", "--target", dest="target", help=" ip address to send back MAC")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", "--target", dest="target", help="ip address to send back MAC")
     # python mac_changer.py --target 10.0.2.1/24
     # python mac_changer.py --t 10.0.2.1/24
-    (options, arguments) = parser.parse_args()
+    options = parser.parse_args()
     if not options.target:
         parser.error("[-] Please specify a target, use --help for more info.")
     return options
